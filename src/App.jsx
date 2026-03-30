@@ -1,8 +1,14 @@
+import AppRouter from "./routes/AppRouter";
+
 function App() {
   return (
-    <div>
-      <h1>React Starter</h1>
-    </div>
+    <>
+      <AppRouter />
+
+      <div>
+        <h1>React Starter</h1>
+      </div>
+    </>
   );
 }
 
