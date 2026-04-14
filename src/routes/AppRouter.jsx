@@ -10,7 +10,11 @@ function AppRouter() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/products" element={<ProductsPage />} />
-      <Route path="/products/:productId" element={<ProductDetailsPage />} />
+      <Route
+        path="/products/:productId"
+        element={<ProductDetailsPage />}
+      />{" "}
+      //dynamic route for product details using :productId as a parameter
       <Route path="/cart" element={<CartPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
