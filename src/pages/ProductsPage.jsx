@@ -1,8 +1,25 @@
+import dummyProducts from "../data/dummyProducts";
+import ProductCard from "../components/products/ProductCard";
+
 function ProductsPage() {
   return (
     <main>
-      <h1>Products Page</h1>
-      <p>Here will be the list of cosmetics.</p>
+      <h1>Our Products</h1>
+      <p>Discover our collection of skincare, makeup and body care products.</p>
+
+      <section className="products-list">
+        {dummyProducts.map((product) => (
+          <ProductCard
+            className="product-card"
+            id={product.id}
+            key={product.id}
+            name={product.name}
+            category={product.category}
+            price={product.price}
+            image={product.image}
+          />
+        ))}
+      </section>
     </main>
   );
 }
