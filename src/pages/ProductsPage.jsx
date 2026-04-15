@@ -1,5 +1,5 @@
 import dummyProducts from "../data/dummyProducts";
-import ProductCard from "../components/products/ProductCard";
+import SingularProductCard from "../components/products/SingularProductCard";
 
 function ProductsPage() {
   return (
@@ -9,7 +9,7 @@ function ProductsPage() {
 
       <section className="products-list">
         {dummyProducts.map((product) => (
-          <ProductCard
+          <SingularProductCard
             className="product-card"
             id={product.id}
             key={product.id}

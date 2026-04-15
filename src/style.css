@@ -7,13 +7,21 @@
 }
 
 :root {
-  --background: rgb(245, 248, 255);
-  --colorBlue: #2554f0;
-  --blackPrimary: #070c1e;
+  --color-creme: #faf6f0;
+  --color-blush: #e8c4b8;
+  --color-rose: #d4907a;
+  --color-terra: #c4724a;
+  --color-sage: #7a9e7e;
+  --color-dusk: #3d2b2b;
+  --color-gold: #c9a96e;
+
+  --gradient-blushed-dawn: linear-gradient(135deg, #faf6f0, #e8c4b8, #d4907a);
+  --gradient-botanical-mist: linear-gradient(135deg, #f2eee8, #b5d1b8, #7a9e7e);
+  --gradient-golden-dusk: linear-gradient(135deg, #c9a96e, #c4724a, #3d2b2b);
+  --gradient-rose-veil: linear-gradient(180deg, #faf6f0, #e8c4b8 60%, #c4724a);
 }
 
 html {
-  /* This defines what 1rem is */
   font-size: 62.5%;
   box-sizing: border-box;
 }
@@ -21,20 +29,22 @@ html {
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f9f7f6;
-  color: #222;
+  background-color: var(--color-creme);
+  color: var(--color-dusk);
+}
+
+header,
+footer {
+  background-color: white;
+  width: 100%;
 }
 
 header {
   border-bottom: 1px solid #e5e5e5;
-  background-color: white;
-  width: 100%;
 }
 
 footer {
   border-top: 1px solid #e5e5e5;
-  background-color: white;
-  width: 100%;
 }
 
 nav,
@@ -55,14 +65,21 @@ nav div {
   gap: 24px;
 }
 
-nav a {
+nav a,
+.product-link,
+.back-link {
   text-decoration: none;
-  color: #222;
+}
+
+nav a {
+  color: var(--color-dusk);
   font-size: 14px;
 }
 
-nav a:hover {
-  opacity: 0.7;
+nav a:hover,
+.back-link:hover,
+.product-details-button:hover {
+  opacity: 0.85;
 }
 
 main h1 {
@@ -108,7 +125,7 @@ main > p {
 
 .product-card h2 {
   font-size: 2rem;
-  margin: 0 0 8px;
+  margin-bottom: 8px;
 }
 
 .product-card p {
@@ -129,15 +146,153 @@ main > p {
 }
 
 .product-link {
-  text-decoration: none;
   color: inherit;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 2.4rem;
+  font-size: 1.4rem;
+  color: var(--color-terra);
+}
+
+.product-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.8rem;
+  align-items: start;
+}
+
+.product-details-image-box,
+.product-details-content {
+  background-color: white;
+  border: 1px solid #ececec;
+  border-radius: 2rem;
+  padding: 2.4rem;
 }
 
 .product-details-image {
   width: 100%;
-  max-width: 400px;
-  height: auto;
+  height: 520px;
+  object-fit: cover;
   display: block;
-  border-radius: 12px;
-  margin: 20px 0;
+  border-radius: 1.6rem;
+}
+
+.product-details-category {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-terra);
+  margin-bottom: 1rem;
+}
+
+.product-details-brand {
+  font-size: 1.5rem;
+  color: #666;
+  margin-bottom: 1.6rem;
+}
+
+.product-details-price {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+}
+
+.product-details-size {
+  font-size: 1.5rem;
+  color: #555;
+  margin-bottom: 2.4rem;
+}
+
+.product-details-actions {
+  display: flex;
+  gap: 1.2rem;
+  align-items: stretch;
+  margin-bottom: 3.2rem;
+}
+
+.quantity-box {
+  display: flex;
+  align-items: center;
+  height: 4.6rem;
+  border: 1px solid rgba(61, 43, 43, 0.25);
+  border-radius: 999px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.quantity-box button {
+  width: 3rem;
+  height: 100%;
+  border: none;
+  background-color: white;
+  color: var(--color-dusk);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.quantity-box span {
+  min-width: 3.2rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.product-details-button {
+  flex: 1;
+  width: auto;
+  height: 4.6rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0 2.4rem;
+  background-color: var(--color-dusk);
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.favourite-button {
+  width: 4.6rem;
+  height: 4.6rem;
+  border: 1px solid rgba(61, 43, 43, 0.25);
+  border-radius: 50%;
+  background-color: white;
+  color: var(--color-terra);
+  font-size: 2.4rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.product-details-info {
+  border-top: 1px solid rgba(61, 43, 43, 0.1);
+}
+
+.accordion-item {
+  border-bottom: 1px solid rgba(61, 43, 43, 0.1);
+}
+
+.accordion-item button {
+  width: 100%;
+  padding: 1.6rem 0;
+  border: none;
+  background: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-dusk);
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.accordion-item span {
+  color: var(--color-terra);
+  font-size: 2rem;
+}
+
+.accordion-item p {
+  padding-bottom: 1.6rem;
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: rgba(61, 43, 43, 0.7);
 }

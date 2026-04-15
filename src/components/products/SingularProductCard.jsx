@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function ProductCard({ id, name, category, price, image, className }) {
+function SingularProductCard({ id, name, category, price, image, className }) {
   return (
     <Link to={`/products/${id}`} className="product-link">
       <article className={className}>
@@ -13,4 +13,4 @@ function ProductCard({ id, name, category, price, image, className }) {
   );
 }
 
-export default ProductCard;
+export default SingularProductCard;
