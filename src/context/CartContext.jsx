@@ -1,9 +1,11 @@
+//the logic of sharing the shopping cart state across the entire application
+
 import { createContext, useContext, useState } from "react"; //for creating the context and using it in the components
 
 const CartContext = createContext(); //creating the context object, which will hold the cart state and functions to manipulate it
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]); //state of the car
+  const [cartItems, setCartItems] = useState([]); //state of the cart
 
   function addToCart(product, quantity) {
     setCartItems((prevCartItems) => {
@@ -46,10 +48,7 @@ export function CartProvider({ children }) {
     setCartItems((prevCartItems) =>
       prevCartItems.map((item) =>
         item.id === productId
-          ? {
-              ...item,
-              quantity: item.quantity > 1 ? item.quantity - 1 : 1,
-            }
+          ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
           : item,
       ),
     );
@@ -66,7 +65,7 @@ export function CartProvider({ children }) {
   );
 
   return (
-    <CartContext.Provider
+    <CartContext.Provider // sharing data and functions related to the cart with the entire application
       value={{
         cartItems,
         addToCart,
@@ -82,6 +81,7 @@ export function CartProvider({ children }) {
   );
 }
 
+//custom hook
 export function useCart() {
   const context = useContext(CartContext);
 
