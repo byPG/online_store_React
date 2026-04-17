@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom"; //for reading the dynamic parameter from the URL
 import dummyProducts from "../data/dummyProducts";
+import { useCart } from "../context/CartContext";
 
 function ProductDetailsPage() {
   const { productId } = useParams(); //like in the AppRouter, we defined the dynamic route with :productId
   const [quantity, setQuantity] = useState(1);
   const [isFavourite, setIsFavourite] = useState(false);
   const [openSection, setOpenSection] = useState("description");
+
+  const { addToCart } = useCart();
 
   const selectedProduct = dummyProducts.find(
     (product) => product.id === Number(productId),
@@ -28,6 +31,10 @@ function ProductDetailsPage() {
     setOpenSection((prevOpenSection) =>
       prevOpenSection === sectionName ? null : sectionName,
     );
+  }
+
+  function handleAddToCart() {
+    addToCart(selectedProduct, quantity);
   }
 
   if (!selectedProduct) {
@@ -80,7 +87,11 @@ function ProductDetailsPage() {
               </button>
             </div>
 
-            <button className="product-details-button" type="button">
+            <button
+              className="product-details-button"
+              type="button"
+              onClick={handleAddToCart}
+            >
               Add to cart
             </button>
 

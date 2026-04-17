@@ -1,9 +1,9 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react"; //for creating the context and using it in the components
 
-const CartContext = createContext();
+const CartContext = createContext(); //creating the context object, which will hold the cart state and functions to manipulate it
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]); //state of the car
 
   function addToCart(product, quantity) {
     setCartItems((prevCartItems) => {
