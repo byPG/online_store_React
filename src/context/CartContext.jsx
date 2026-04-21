@@ -1,8 +1,8 @@
 //the logic of sharing the shopping cart state across the entire application
 
-import { createContext, useContext, useState } from "react"; //for creating the context and using it in the components
+import { createContext, useState } from "react"; //for creating the context and using it in the components
 
-const CartContext = createContext(); //creating the context object, which will hold the cart state and functions to manipulate it
+export const CartContext = createContext(); //creating the context object, which will hold the cart state and functions to manipulate it
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]); //state of the cart
@@ -20,7 +20,7 @@ export function CartProvider({ children }) {
             : item,
         );
       }
-
+      //if the product is not already in the cart, we add it as a new item
       const newCartItem = {
         ...product,
         quantity: quantity,
@@ -79,15 +79,4 @@ export function CartProvider({ children }) {
       {children}
     </CartContext.Provider>
   );
-}
-
-//custom hook
-export function useCart() {
-  const context = useContext(CartContext);
-
-  if (!context) {
-    throw new Error("useCart must be used inside CartProvider");
-  }
-
-  return context;
 }

@@ -1,15 +1,16 @@
-import { useState } from "react";
 import { Link, useParams } from "react-router-dom"; //for reading the dynamic parameter from the URL
 import dummyProducts from "../data/dummyProducts";
-import { useCart } from "../context/CartContext";
+import { useState, useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 function ProductDetailsPage() {
   const { productId } = useParams(); //like in the AppRouter, we defined the dynamic route with :productId
+
   const [quantity, setQuantity] = useState(1);
   const [isFavourite, setIsFavourite] = useState(false);
   const [openSection, setOpenSection] = useState("description");
 
-  const { addToCart } = useCart();
+  const { addToCart } = useContext(CartContext);
 
   const selectedProduct = dummyProducts.find(
     (product) => product.id === Number(productId),

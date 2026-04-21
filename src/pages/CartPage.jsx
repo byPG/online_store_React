@@ -1,4 +1,5 @@
-import { useCart } from "../context/CartContext";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 function CartPage() {
   const {
@@ -7,7 +8,7 @@ function CartPage() {
     decreaseQuantity,
     removeFromCart,
     totalPrice,
-  } = useCart();
+  } = useContext(CartContext);
 
   if (cartItems.length === 0) {
     return (

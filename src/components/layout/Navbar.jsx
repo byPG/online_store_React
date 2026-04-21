@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
+import { useContext } from "react"; //for using the context in the components
+import { CartContext } from "../../context/CartContext";
 
 export default function Navbar() {
-  const { totalItems } = useCart();
+  const { totalItems } = useContext(CartContext);
 
   return (
     <header>
