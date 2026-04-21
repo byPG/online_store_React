@@ -9,6 +9,7 @@ function ProductDetailsPage() {
   const [quantity, setQuantity] = useState(1);
   const [isFavourite, setIsFavourite] = useState(false);
   const [openSection, setOpenSection] = useState("description");
+  const [added, setAdded] = useState(false);
 
   const { addToCart } = useContext(CartContext);
 
@@ -34,8 +35,13 @@ function ProductDetailsPage() {
     );
   }
 
+  function showAddedToCart() {
+    setAdded(true);
+  }
+
   function handleAddToCart() {
     addToCart(selectedProduct, quantity);
+    showAddedToCart();
   }
 
   if (!selectedProduct) {
@@ -95,6 +101,8 @@ function ProductDetailsPage() {
             >
               Add to cart
             </button>
+
+            {added && <p className="added-message">Added to cart ✓</p>}
 
             <button
               className="favourite-button"

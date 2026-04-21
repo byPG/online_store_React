@@ -1,20 +1,31 @@
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
 function CartPage() {
   const {
     cartItems,
+    removeFromCart,
     increaseQuantity,
     decreaseQuantity,
-    removeFromCart,
     totalPrice,
   } = useContext(CartContext);
 
   if (cartItems.length === 0) {
     return (
-      <main>
+      <main className="cart-page">
         <h1>Your cart</h1>
-        <p>Your cart is empty.</p>
+
+        <div className="cart-empty">
+          <p>Your cart is empty</p>
+          <p className="cart-empty-sub">
+            Looks like you haven’t added anything yet.
+          </p>
+
+          <Link to="/products" className="cart-empty-button">
+            Browse products
+          </Link>
+        </div>
       </main>
     );
   }

@@ -13,7 +13,11 @@ export default function Navbar() {
         <div>
           <Link to="/">Home</Link>
           <Link to="/products">Products</Link>
-          <Link to="/cart">Cart ({totalItems})</Link>
+          <Link to="/cart" className="cart-link">
+            <span className="cart-icon">🛒</span>
+            <span>Cart</span>
+            {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
+          </Link>
         </div>
       </nav>
     </header>

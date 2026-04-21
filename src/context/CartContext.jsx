@@ -7,7 +7,7 @@ export const CartContext = createContext(); //creating the context object, which
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]); //state of the cart
 
-  function addToCart(product, quantity) {
+  function addToCart(product, newQuantity) {
     setCartItems((prevCartItems) => {
       const existingCartItem = prevCartItems.find(
         (item) => item.id === product.id,
@@ -16,14 +16,14 @@ export function CartProvider({ children }) {
       if (existingCartItem) {
         return prevCartItems.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
+            ? { ...item, quantity: item.quantity + newQuantity }
             : item,
         );
       }
       //if the product is not already in the cart, we add it as a new item
       const newCartItem = {
         ...product,
-        quantity: quantity,
+        quantity: newQuantity,
       };
 
       return [...prevCartItems, newCartItem];
