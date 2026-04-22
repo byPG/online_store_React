@@ -503,3 +503,31 @@ main > p {
   color: white;
   border-color: var(--color-dusk);
 }
+
+.product-thumbnails {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+.product-thumbnail {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.product-thumbnail:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.product-thumbnail-active {
+  border-color: var(--color-terra);
+}

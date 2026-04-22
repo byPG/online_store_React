@@ -10,6 +10,12 @@ const dummyProducts = [
     description: "A lightweight moisturizing cream designed to hydrate and soften the skin throughout the day.",
     ingredients: "Aqua, Glycerin, Shea Butter, Hyaluronic Acid, Vitamin E.",
     howToUse: "Apply a small amount to clean skin in the morning and evening.",
+    images: [
+      "/images/serum.jpg",
+      "/images/cream.jpg",
+      "/images/cream.jpg",
+      "/images/cream.jpg",
+]
   },
   {
     id: 2,
@@ -22,6 +28,12 @@ const dummyProducts = [
     description: "A potent vitamin C serum to brighten and even out skin tone.",
     ingredients: "Aqua, Ascorbic Acid, Tocopherol, Hyaluronic Acid.",
     howToUse: "Apply a few drops to clean skin in the morning before moisturizer.",
+    images: [
+      "/images/serum.jpg",
+      "/images/cream.jpg",
+      "/images/balsam.jpg",
+      "/images/serum.jpg",
+    ],
   },
   {
     id: 3,
@@ -34,6 +46,12 @@ const dummyProducts = [
     description: "A long-lasting matte lipstick with rich color payoff.",
     ingredients: "Cera Alba, Castor Oil, Mica, Iron Oxides.",
     howToUse: "Apply directly from the bullet to lips for full coverage.",
+        images: [
+      "/images/lipstick.jpg",
+      "/images/lipstick.jpg",
+      "/images/lipstick.jpg",
+      "/images/cream.jpg",
+    ],
   },
   {
     id: 4,
@@ -46,6 +64,12 @@ const dummyProducts = [
     description: "A rich, nourishing body balm to hydrate and protect the skin.",
     ingredients: "Aqua, Glycerin, Shea Butter, Vitamin E.",
     howToUse: "Apply to clean, dry skin after bathing for maximum hydration.",
+        images: [
+      "/images/balsam.jpg",
+      "/images/balsam.jpg",
+      "/images/balsam.jpg",
+      "/images/balsam.jpg",
+    ],
   },
 ];
 

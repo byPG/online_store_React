@@ -10,12 +10,15 @@ function ProductDetailsPage() {
   const [isFavourite, setIsFavourite] = useState(false);
   const [openSection, setOpenSection] = useState("description");
   const [added, setAdded] = useState(false);
+  const [activeImage, setActiveImage] = useState(null);
 
   const { addToCart } = useContext(CartContext);
 
   const selectedProduct = dummyProducts.find(
     (product) => product.id === Number(productId),
   );
+
+  const displayedImage = activeImage || selectedProduct.images[0];
 
   function handleDecreaseQuantity() {
     setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
@@ -71,9 +74,23 @@ function ProductDetailsPage() {
         <div className="product-details-image-box">
           <img
             className="product-details-image"
-            src={selectedProduct.image}
+            src={displayedImage}
             alt={selectedProduct.name}
           />
+
+          <div className="product-thumbnails">
+            {selectedProduct.images.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`${selectedProduct.name} ${index}`}
+                className={`product-thumbnail ${
+                  displayedImage === img ? "product-thumbnail-active" : ""
+                }`}
+                onClick={() => setActiveImage(img)}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="product-details-content">
