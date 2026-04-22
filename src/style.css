@@ -278,6 +278,15 @@ main > p {
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.product-details-button-added {
+  background-color: var(--color-sage);
+  color: white;
 }
 
 .favourite-button {

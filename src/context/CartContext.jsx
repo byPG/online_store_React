@@ -13,11 +13,13 @@ export function CartProvider({ children }) {
         (item) => item.id === product.id,
       );
 
+      //update the quantity of the product if it is already in the cart
       if (existingCartItem) {
-        return prevCartItems.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + newQuantity }
-            : item,
+        return prevCartItems.map(
+          (item) =>
+            item.id === product.id
+              ? { ...item, quantity: item.quantity + newQuantity }
+              : item, //product stays in the cart without changes, except for the quantity which is updated
         );
       }
       //if the product is not already in the cart, we add it as a new item

@@ -37,6 +37,10 @@ function ProductDetailsPage() {
 
   function showAddedToCart() {
     setAdded(true);
+
+    setTimeout(() => {
+      setAdded(false);
+    }, 1700);
   }
 
   function handleAddToCart() {
@@ -95,14 +99,12 @@ function ProductDetailsPage() {
             </div>
 
             <button
-              className="product-details-button"
+              className={`product-details-button ${added ? "product-details-button-added" : ""}`}
               type="button"
               onClick={handleAddToCart}
             >
-              Add to cart
+              {added ? "Added ✓" : "Add to cart"}
             </button>
-
-            {added && <p className="added-message">Added to cart ✓</p>}
 
             <button
               className="favourite-button"
