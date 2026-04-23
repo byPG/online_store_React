@@ -3,7 +3,7 @@ import dummyProducts from "../data/dummyProducts";
 import SingularProductCard from "../components/products/SingularProductCard";
 
 function ProductsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("All"); // filter state
 
   const filteredProducts =
     selectedCategory === "All"

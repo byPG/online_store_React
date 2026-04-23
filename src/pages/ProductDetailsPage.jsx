@@ -2,23 +2,28 @@ import { Link, useParams } from "react-router-dom"; //for reading the dynamic pa
 import dummyProducts from "../data/dummyProducts";
 import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { FavouritesContext } from "../context/FavouritesContext";
 
 function ProductDetailsPage() {
   const { productId } = useParams(); //like in the AppRouter, we defined the dynamic route with :productId
 
   const [quantity, setQuantity] = useState(1);
-  const [isFavourite, setIsFavourite] = useState(false);
   const [openSection, setOpenSection] = useState("description");
   const [added, setAdded] = useState(false);
   const [activeImage, setActiveImage] = useState(null);
 
   const { addToCart } = useContext(CartContext);
+  const { favouriteItems, toggleFavourite } = useContext(FavouritesContext);
 
   const selectedProduct = dummyProducts.find(
     (product) => product.id === Number(productId),
   );
 
   const displayedImage = activeImage || selectedProduct.images[0];
+
+  const isFavourite = favouriteItems.some(
+    (item) => item.id === selectedProduct.id,
+  );
 
   function handleDecreaseQuantity() {
     setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
@@ -29,7 +34,7 @@ function ProductDetailsPage() {
   }
 
   function handleToggleFavourite() {
-    setIsFavourite((prevIsFavourite) => !prevIsFavourite);
+    toggleFavourite(selectedProduct);
   }
 
   function handleToggleSection(sectionName) {
@@ -77,7 +82,8 @@ function ProductDetailsPage() {
             src={displayedImage}
             alt={selectedProduct.name}
           />
-
+          //mini images below the main image, when you click on them, the main
+          image changes to the one you clicked on
           <div className="product-thumbnails">
             {selectedProduct.images.map((img, index) => (
               <img
