@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { FavouritesContext } from "../context/FavouritesContext";
 import SingularProductCard from "../components/products/SingularProductCard";
 
@@ -15,11 +15,10 @@ function FavouritesPage() {
         {favouriteItems.length > 0 && (
           <>
             {favouriteItems.map((product) => (
-              <div>
+              <div key={product.id}>
                 <SingularProductCard
                   className="product-card"
                   id={product.id}
-                  key={product.id}
                   name={product.name}
                   category={product.category}
                   price={product.price}

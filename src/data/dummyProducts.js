@@ -15,7 +15,7 @@ const dummyProducts = [
       "/images/cream.jpg",
       "/images/cream.jpg",
       "/images/cream.jpg",
-]
+    ],
   },
   {
     id: 2,

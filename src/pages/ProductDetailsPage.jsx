@@ -57,7 +57,9 @@ function ProductDetailsPage() {
   }
 
   if (!selectedProduct) {
-    //if there is no product with the given id
+    {
+      /*if there is no product with the given id*/
+    }
     return (
       <main>
         <h1>Product not found</h1>
@@ -82,8 +84,7 @@ function ProductDetailsPage() {
             src={displayedImage}
             alt={selectedProduct.name}
           />
-          //mini images below the main image, when you click on them, the main
-          image changes to the one you clicked on
+          {/* mini images below the main image, when you click on them, the main image changes to the one you clicked on */}
           <div className="product-thumbnails">
             {selectedProduct.images.map((img, index) => (
               <img
