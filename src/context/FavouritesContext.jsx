@@ -1,12 +1,19 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const FavouritesContext = createContext();
 
 export function FavouritesProvider({ children }) {
-  const [favouriteItems, setFavourites] = useState([]);
+  const [favouriteItems, setFavouritesItems] = useState(() => {
+    const savedFavouriteItems = localStorage.getItem("favouriteItems");
+    return savedFavouriteItems ? JSON.parse(savedFavouriteItems) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("favouriteItems", JSON.stringify(favouriteItems));
+  }, [favouriteItems]);
 
   function toggleFavourite(product) {
-    setFavourites((prevItems) => {
+    setFavouritesItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.id === product.id);
 
       if (existingItem) {
@@ -19,8 +26,12 @@ export function FavouritesProvider({ children }) {
     });
   }
 
+  const totalFavouritesItems = favouriteItems.length;
+
   return (
-    <FavouritesContext.Provider value={{ favouriteItems, toggleFavourite }}>
+    <FavouritesContext.Provider
+      value={{ favouriteItems, toggleFavourite, totalFavouritesItems }}
+    >
       {children}
     </FavouritesContext.Provider>
   );

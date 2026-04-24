@@ -1,11 +1,20 @@
 //the logic of sharing the shopping cart state across the entire application
 
-import { createContext, useState } from "react"; //for creating the context and using it in the components
+import { createContext, useState, useEffect } from "react"; //for creating the context and using it in the components
 
 export const CartContext = createContext(); //creating the context object, which will hold the cart state and functions to manipulate it
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]); //state of the cart
+  const [cartItems, setCartItems] = useState(() => {
+    //state of the cart & localstorage
+    const savedCartItems = localStorage.getItem("cartItems");
+
+    return savedCartItems ? JSON.parse(savedCartItems) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   function addToCart(product, newQuantity) {
     setCartItems((prevCartItems) => {
