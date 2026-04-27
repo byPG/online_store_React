@@ -1,8 +1,25 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
 function CartPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    address: "",
+    city: "",
+    postalCode: "",
+  });
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
   const {
     cartItems,
     removeFromCart,
@@ -88,6 +105,54 @@ function CartPage() {
           <button type="button" className="checkout-button">
             Checkout
           </button>
+
+          <form className="checkout-form">
+            <h2>Checkout</h2>
+
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+
+            <input
+              type="text"
+              name="address"
+              placeholder="Address"
+              value={formData.address}
+              onChange={handleChange}
+            />
+
+            <input
+              type="text"
+              name="city"
+              placeholder="City"
+              value={formData.city}
+              onChange={handleChange}
+            />
+
+            <input
+              type="text"
+              name="postalCode"
+              placeholder="Postal Code"
+              value={formData.postalCode}
+              onChange={handleChange}
+            />
+
+            <button type="submit" className="checkout-button">
+              Place Order
+            </button>
+          </form>
         </aside>
       </section>
     </main>
