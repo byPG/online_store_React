@@ -618,3 +618,8 @@ main > p {
   font-size: 1.3rem;
   color: var(--color-terra);
 }
+
+.form-success {
+  font-size: 1.3rem;
+  color: var(--color-sage);
+}

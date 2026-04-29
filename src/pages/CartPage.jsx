@@ -12,6 +12,7 @@ function CartPage() {
   });
 
   const [formError, setFormError] = useState("");
+  const [formSuccess, setFormSuccess] = useState("");
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -25,21 +26,42 @@ function CartPage() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    const isFormValid =
+    const isFormFilled =
       formData.name &&
       formData.email &&
       formData.address &&
       formData.city &&
       formData.postalCode;
 
-    if (!isFormValid) {
+    const isEmailValid = formData.email.includes("@");
+
+    if (!isFormFilled) {
       setFormError("Please fill in all fields.");
+      setFormSuccess("");
+      return;
+    }
+
+    if (!isEmailValid) {
+      setFormError("Please enter a valid email address.");
+      setFormSuccess("");
       return;
     }
 
     setFormError("");
+    setFormSuccess("Your order has been placed successfully!");
 
     console.log("Order data:", formData);
+    console.log("Ordered products:", cartItems);
+
+    setFormData({
+      name: "",
+      email: "",
+      address: "",
+      city: "",
+      postalCode: "",
+    });
+
+    clearCart();
   }
 
   const {
@@ -48,6 +70,7 @@ function CartPage() {
     increaseQuantity,
     decreaseQuantity,
     totalPrice,
+    clearCart,
   } = useContext(CartContext);
 
   if (cartItems.length === 0) {
@@ -168,6 +191,7 @@ function CartPage() {
             />
 
             {formError && <p className="form-error">{formError}</p>}
+            {formSuccess && <p className="form-success">{formSuccess}</p>}
 
             <button type="submit" className="checkout-button">
               Place Order

@@ -75,6 +75,10 @@ export function CartProvider({ children }) {
     0,
   );
 
+  function clearCart() {
+    setCartItems([]);
+  }
+
   return (
     <CartContext.Provider // sharing data and functions related to the cart with the entire application
       value={{
@@ -85,6 +89,7 @@ export function CartProvider({ children }) {
         decreaseQuantity,
         totalItems,
         totalPrice,
+        clearCart,
       }}
     >
       {children}
