@@ -11,6 +11,8 @@ function CartPage() {
     postalCode: "",
   });
 
+  const [formError, setFormError] = useState("");
+
   function handleChange(e) {
     const { name, value } = e.target;
 
@@ -18,6 +20,26 @@ function CartPage() {
       ...prev,
       [name]: value,
     }));
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const isFormValid =
+      formData.name &&
+      formData.email &&
+      formData.address &&
+      formData.city &&
+      formData.postalCode;
+
+    if (!isFormValid) {
+      setFormError("Please fill in all fields.");
+      return;
+    }
+
+    setFormError("");
+
+    console.log("Order data:", formData);
   }
 
   const {
@@ -102,11 +124,7 @@ function CartPage() {
             <strong>{totalPrice.toFixed(2)} zł</strong>
           </div>
 
-          <button type="button" className="checkout-button">
-            Checkout
-          </button>
-
-          <form className="checkout-form">
+          <form className="checkout-form" onSubmit={handleSubmit}>
             <h2>Checkout</h2>
 
             <input
@@ -148,6 +166,8 @@ function CartPage() {
               value={formData.postalCode}
               onChange={handleChange}
             />
+
+            {formError && <p className="form-error">{formError}</p>}
 
             <button type="submit" className="checkout-button">
               Place Order
