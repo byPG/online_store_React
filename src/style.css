@@ -623,3 +623,19 @@ main > p {
   font-size: 1.3rem;
   color: var(--color-sage);
 }
+
+.thank-you-page {
+  max-width: 640px;
+  margin: 8rem auto;
+  text-align: center;
+  background-color: white;
+  border: 1px solid rgba(61, 43, 43, 0.1);
+  border-radius: 2rem;
+  padding: 4rem 2.4rem;
+}
+
+.thank-you-page p {
+  font-size: 1.6rem;
+  color: rgba(61, 43, 43, 0.7);
+  margin-bottom: 2.4rem;
+}

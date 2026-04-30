@@ -5,6 +5,7 @@ import ProductDetailsPage from "../pages/ProductDetailsPage";
 import FavouritesPage from "../pages/FavouritesPage";
 import CartPage from "../pages/CartPage";
 import NotFoundPage from "../pages/NotFoundPage";
+import ThankYouPage from "../pages/ThankYouPage";
 
 function AppRouter() {
   return (
@@ -15,6 +16,7 @@ function AppRouter() {
       {/* dynamic route for product details using :productId as a parameter */}
       <Route path="/favourites" element={<FavouritesPage />} />
       <Route path="/cart" element={<CartPage />} />
+      <Route path="/thank-you" element={<ThankYouPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
