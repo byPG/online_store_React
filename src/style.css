@@ -614,11 +614,6 @@ main > p {
   border-color: var(--color-terra);
 }
 
-.form-error {
-  font-size: 1.3rem;
-  color: var(--color-terra);
-}
-
 .form-success {
   font-size: 1.3rem;
   color: var(--color-sage);
@@ -638,4 +633,10 @@ main > p {
   font-size: 1.6rem;
   color: rgba(61, 43, 43, 0.7);
   margin-bottom: 2.4rem;
+}
+
+.form-field-error {
+  font-size: 1.2rem;
+  color: var(--color-terra);
+  margin-top: -0.6rem;
 }

@@ -12,7 +12,7 @@ function CartPage() {
     postalCode: "",
   });
 
-  const [formError, setFormError] = useState("");
+  const [formErrors, setFormErrors] = useState({});
   const [formSuccess, setFormSuccess] = useState("");
 
   function handleChange(e) {
@@ -24,32 +24,45 @@ function CartPage() {
     }));
   }
 
+  function validateForm() {
+    const errors = {};
+
+    if (!formData.name.trim()) {
+      errors.name = "Name is required.";
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = "Email is required.";
+    } else if (!formData.email.includes("@")) {
+      errors.email = "Please enter a valid email address.";
+    }
+
+    if (!formData.address.trim()) {
+      errors.address = "Address is required.";
+    }
+
+    if (!formData.city.trim()) {
+      errors.city = "City is required.";
+    }
+
+    if (!formData.postalCode.trim()) {
+      errors.postalCode = "Postal code is required.";
+    }
+
+    return errors;
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
-    const isFormFilled =
-      formData.name &&
-      formData.email &&
-      formData.address &&
-      formData.city &&
-      formData.postalCode;
+    const errors = validateForm();
 
-    const isEmailValid = formData.email.includes("@");
-
-    if (!isFormFilled) {
-      setFormError("Please fill in all fields.");
-      setFormSuccess("");
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
       return;
     }
 
-    if (!isEmailValid) {
-      setFormError("Please enter a valid email address.");
-      setFormSuccess("");
-      return;
-    }
-
-    setFormError("");
-    setFormSuccess("Your order has been placed successfully!");
+    setFormErrors({});
 
     console.log("Order data:", formData);
     console.log("Ordered products:", cartItems);
@@ -160,6 +173,10 @@ function CartPage() {
               onChange={handleChange}
             />
 
+            {formErrors.name && (
+              <p className="form-field-error">{formErrors.name}</p>
+            )}
+
             <input
               type="email"
               name="email"
@@ -168,6 +185,10 @@ function CartPage() {
               onChange={handleChange}
             />
 
+            {formErrors.email && (
+              <p className="form-field-error">{formErrors.email}</p>
+            )}
+
             <input
               type="text"
               name="address"
@@ -175,6 +196,9 @@ function CartPage() {
               value={formData.address}
               onChange={handleChange}
             />
+            {formErrors.address && (
+              <p className="form-field-error">{formErrors.address}</p>
+            )}
 
             <input
               type="text"
@@ -184,6 +208,10 @@ function CartPage() {
               onChange={handleChange}
             />
 
+            {formErrors.city && (
+              <p className="form-field-error">{formErrors.city}</p>
+            )}
+
             <input
               type="text"
               name="postalCode"
@@ -191,8 +219,10 @@ function CartPage() {
               value={formData.postalCode}
               onChange={handleChange}
             />
+            {formErrors.postalCode && (
+              <p className="form-field-error">{formErrors.postalCode}</p>
+            )}
 
-            {formError && <p className="form-error">{formError}</p>}
             {formSuccess && <p className="form-success">{formSuccess}</p>}
 
             <button type="submit" className="checkout-button">
