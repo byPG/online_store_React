@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom"; //for reading the dynamic parameter from the URL
-import dummyProducts from "../data/dummyProducts";
-import { useState, useContext } from "react";
+// import dummyProducts from "../data/dummyProducts";
+import { useState, useContext, useEffect } from "react";
+import { getProductById } from "../services/productsService";
 import { CartContext } from "../context/CartContext";
 import { FavouritesContext } from "../context/FavouritesContext";
 
@@ -15,11 +16,67 @@ function ProductDetailsPage() {
   const { addToCart } = useContext(CartContext);
   const { favouriteItems, toggleFavourite } = useContext(FavouritesContext);
 
-  const selectedProduct = dummyProducts.find(
-    (product) => product.id === Number(productId),
-  );
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const displayedImage = activeImage || selectedProduct.images[0];
+  useEffect(() => {
+    async function loadProduct() {
+      try {
+        setIsLoading(true);
+        setError("");
+
+        const productFromFirebase = await getProductById(productId);
+
+        if (!productFromFirebase) {
+          setError("Product not found.");
+          return;
+        }
+
+        setSelectedProduct(productFromFirebase);
+        setActiveImage(null);
+      } catch (firebaseError) {
+        setError("Could not load product.");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadProduct();
+  }, [productId]);
+
+  if (isLoading) {
+    return (
+      <main>
+        <p>Loading product...</p>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main>
+        <h1>{error}</h1>
+        <Link className="back-link" to="/products">
+          ← Go back to the product list
+        </Link>
+      </main>
+    );
+  }
+
+  if (!selectedProduct) {
+    return (
+      <main>
+        <h1>Product not found</h1>
+        <Link className="back-link" to="/products">
+          ← Go back to the product list
+        </Link>
+      </main>
+    );
+  }
+
+  const productImages = selectedProduct.images || [selectedProduct.image];
+  const displayedImage = activeImage || productImages[0];
 
   const isFavourite = favouriteItems.some(
     (item) => item.id === selectedProduct.id,
@@ -56,21 +113,6 @@ function ProductDetailsPage() {
     showAddedToCart();
   }
 
-  if (!selectedProduct) {
-    {
-      /*if there is no product with the given id*/
-    }
-    return (
-      <main>
-        <h1>Product not found</h1>
-        <p>We could not find this product.</p>
-        <Link className="back-link" to="/products">
-          ← Go back to the product list
-        </Link>
-      </main>
-    );
-  }
-
   return (
     <main>
       <Link className="back-link" to="/products">
@@ -86,7 +128,7 @@ function ProductDetailsPage() {
           />
           {/* mini images below the main image, when you click on them, the main image changes to the one you clicked on */}
           <div className="product-thumbnails">
-            {selectedProduct.images.map((img, index) => (
+            {productImages.map((img, index) => (
               <img
                 key={index}
                 src={img}

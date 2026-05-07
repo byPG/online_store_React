@@ -1,16 +1,51 @@
-import { useState } from "react";
-import dummyProducts from "../data/dummyProducts";
+import { useState, useEffect } from "react";
+// import dummyProducts from "../data/dummyProducts";
+import { getProducts } from "../services/productsService";
 import SingularProductCard from "../components/products/SingularProductCard";
 
 function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All"); // filter state
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function loadProducts() {
+      try {
+        const productsFromFirebase = await getProducts();
+        setProducts(productsFromFirebase);
+      } catch (error) {
+        setError("Could not load products.");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadProducts();
+  }, []);
 
   const filteredProducts =
     selectedCategory === "All"
-      ? dummyProducts
-      : dummyProducts.filter(
-          (product) => product.category === selectedCategory,
-        );
+      ? products
+      : products.filter((product) => product.category === selectedCategory);
+
+  if (isLoading) {
+    return (
+      <main>
+        <h1>Our Products</h1>
+        <p>Loading products...</p>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main>
+        <h1>Our Products</h1>
+        <p>{error}</p>
+      </main>
+    );
+  }
 
   return (
     <main>
