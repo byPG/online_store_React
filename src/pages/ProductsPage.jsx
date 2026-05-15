@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-// import dummyProducts from "../data/dummyProducts";
 import { getProducts } from "../services/productsService";
 import SingularProductCard from "../components/products/SingularProductCard";
 

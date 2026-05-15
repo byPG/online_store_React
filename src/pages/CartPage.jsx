@@ -13,7 +13,6 @@ function CartPage() {
   });
 
   const [formErrors, setFormErrors] = useState({});
-  const [formSuccess, setFormSuccess] = useState("");
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -222,8 +221,6 @@ function CartPage() {
             {formErrors.postalCode && (
               <p className="form-field-error">{formErrors.postalCode}</p>
             )}
-
-            {formSuccess && <p className="form-success">{formSuccess}</p>}
 
             <button type="submit" className="checkout-button">
               Place Order

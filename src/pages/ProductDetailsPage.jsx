@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom"; //for reading the dynamic parameter from the URL
-// import dummyProducts from "../data/dummyProducts";
 import { useState, useContext, useEffect } from "react";
 import { getProductById } from "../services/productsService";
 import { CartContext } from "../context/CartContext";
@@ -75,7 +74,10 @@ function ProductDetailsPage() {
     );
   }
 
-  const productImages = selectedProduct.images || [selectedProduct.image];
+  const productImages =
+    selectedProduct.images?.length > 0
+      ? selectedProduct.images
+      : [selectedProduct.image];
   const displayedImage = activeImage || productImages[0];
 
   const isFavourite = favouriteItems.some(
