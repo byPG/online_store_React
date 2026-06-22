@@ -115,10 +115,10 @@ function HomePage() {
 
         <article>
           <span>03</span>
-          <h3>Made with React</h3>
+          <h3>Personal beauty space</h3>
           <p>
-            Built as a modern portfolio project using React, Context API,
-            routing, localStorage and Firebase.
+            Save your favourite products, return to them anytime and create a
+            beauty selection that fits your routine.
           </p>
         </article>
       </section>
