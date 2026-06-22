@@ -12,8 +12,12 @@ function ProductsPage() {
     async function loadProducts() {
       try {
         const productsFromFirebase = await getProducts();
+
+        console.log("Products from Firebase:", productsFromFirebase);
+
         setProducts(productsFromFirebase);
-      } catch (error) {
+      } catch (firebaseError) {
+        console.error("Firebase products error:", firebaseError);
         setError("Could not load products.");
       } finally {
         setIsLoading(false);
@@ -83,6 +87,8 @@ function ProductsPage() {
       </div>
 
       <section className="products-list">
+        {filteredProducts.length === 0 && <p>No products found.</p>}
+
         {filteredProducts.map((product) => (
           <SingularProductCard
             className="product-card"
