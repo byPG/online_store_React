@@ -13,8 +13,6 @@ function ProductsPage() {
       try {
         const productsFromFirebase = await getProducts();
 
-        console.log("Products from Firebase:", productsFromFirebase);
-
         setProducts(productsFromFirebase);
       } catch (firebaseError) {
         console.error("Firebase products error:", firebaseError);
