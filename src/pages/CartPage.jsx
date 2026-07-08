@@ -15,8 +15,17 @@ function CartPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
-
   const [formErrors, setFormErrors] = useState({});
+
+  const {
+    cartItems,
+    removeFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+    totalItems,
+    totalPrice,
+    clearCart,
+  } = useContext(CartContext);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -112,16 +121,6 @@ function CartPage() {
       setIsSubmitting(false);
     }
   }
-
-  const {
-    cartItems,
-    removeFromCart,
-    increaseQuantity,
-    decreaseQuantity,
-    totalItems,
-    totalPrice,
-    clearCart,
-  } = useContext(CartContext);
 
   if (cartItems.length === 0) {
     return (
