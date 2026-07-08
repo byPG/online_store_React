@@ -431,6 +431,11 @@ main > p {
   cursor: pointer;
 }
 
+.checkout-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
 .cart-empty {
   margin-top: 6rem;
   text-align: center;

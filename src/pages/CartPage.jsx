@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { createOrder } from "../services/ordersService";
 
 function CartPage() {
   const navigate = useNavigate();
@@ -11,6 +12,9 @@ function CartPage() {
     city: "",
     postalCode: "",
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const [formErrors, setFormErrors] = useState({});
 
@@ -51,7 +55,7 @@ function CartPage() {
     return errors;
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const errors = validateForm();
@@ -62,20 +66,51 @@ function CartPage() {
     }
 
     setFormErrors({});
+    setSubmitError("");
+    setIsSubmitting(true);
 
-    console.log("Order data:", formData);
-    console.log("Ordered products:", cartItems);
+    const orderData = {
+      customer: {
+        name: formData.name,
+        email: formData.email,
+        address: formData.address,
+        city: formData.city,
+        postalCode: formData.postalCode,
+      },
+      items: cartItems.map((item) => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        image: item.image,
+        category: item.category,
+        brand: item.brand,
+        size: item.size,
+      })),
+      totalItems: totalItems,
+      totalPrice: totalPrice,
+      status: "new",
+    };
 
-    setFormData({
-      name: "",
-      email: "",
-      address: "",
-      city: "",
-      postalCode: "",
-    });
+    try {
+      await createOrder(orderData);
 
-    clearCart();
-    navigate("/thank-you");
+      setFormData({
+        name: "",
+        email: "",
+        address: "",
+        city: "",
+        postalCode: "",
+      });
+
+      clearCart();
+      navigate("/thank-you");
+    } catch (firebaseError) {
+      console.error("Order submit error:", firebaseError);
+      setSubmitError("Could not place your order. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const {
@@ -222,8 +257,14 @@ function CartPage() {
               <p className="form-field-error">{formErrors.postalCode}</p>
             )}
 
-            <button type="submit" className="checkout-button">
-              Place Order
+            {submitError && <p className="form-field-error">{submitError}</p>}
+
+            <button
+              className="checkout-button"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Placing order..." : "Place Order"}
             </button>
           </form>
         </aside>
