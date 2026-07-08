@@ -69,30 +69,30 @@ function CartPage() {
     setSubmitError("");
     setIsSubmitting(true);
 
-    const orderData = {
-      customer: {
-        name: formData.name,
-        email: formData.email,
-        address: formData.address,
-        city: formData.city,
-        postalCode: formData.postalCode,
-      },
-      items: cartItems.map((item) => ({
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-        image: item.image,
-        category: item.category,
-        brand: item.brand,
-        size: item.size,
-      })),
-      totalItems: totalItems,
-      totalPrice: totalPrice,
-      status: "new",
-    };
-
     try {
+      const orderData = {
+        customer: {
+          name: formData.name,
+          email: formData.email,
+          address: formData.address,
+          city: formData.city,
+          postalCode: formData.postalCode,
+        },
+        items: cartItems.map((item) => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          image: item.image,
+          category: item.category || "",
+          brand: item.brand || "",
+          size: item.size || "",
+        })),
+        totalItems: totalItems,
+        totalPrice: totalPrice,
+        status: "new",
+      };
+
       await createOrder(orderData);
 
       setFormData({
@@ -118,6 +118,7 @@ function CartPage() {
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,
+    totalItems,
     totalPrice,
     clearCart,
   } = useContext(CartContext);
