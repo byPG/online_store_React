@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import { useContext } from "react"; //for using the context in the components
 import { CartContext } from "../../context/CartContext";
 import { FavouritesContext } from "../../context/FavouritesContext";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Navbar() {
   const { totalItems } = useContext(CartContext);
   const { totalFavouritesItems } = useContext(FavouritesContext);
+  const { currentUser, logout } = useContext(AuthContext);
 
   return (
     <header>
@@ -27,6 +29,24 @@ export default function Navbar() {
             <span>Cart</span>
             {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
           </Link>
+
+          {currentUser ? (
+            <>
+              <span className="nav-user">{currentUser.email}</span>
+              <button
+                className="nav-auth-button"
+                type="button"
+                onClick={logout}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Register</Link>
+            </>
+          )}
         </div>
       </nav>
     </header>

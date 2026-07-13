@@ -3,16 +3,19 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import { CartProvider } from "./context/CartContext";
 import { FavouritesProvider } from "./context/FavouritesContext";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <FavouritesProvider>
-      <CartProvider>
-        <Navbar />
-        <AppRouter />
-        <Footer />
-      </CartProvider>
-    </FavouritesProvider>
+    <AuthProvider>
+      <FavouritesProvider>
+        <CartProvider>
+          <Navbar />
+          <AppRouter />
+          <Footer />
+        </CartProvider>
+      </FavouritesProvider>
+    </AuthProvider>
   );
 }
 
