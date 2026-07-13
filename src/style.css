@@ -87,6 +87,48 @@ nav a {
   font-size: 14px;
 }
 
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  color: var(--color-dusk);
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--gradient-blushed-dawn);
+  color: var(--color-dusk);
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(61, 43, 43, 0.12);
+}
+
+.nav-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.nav-logo-text span {
+  color: rgba(61, 43, 43, 0.68);
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nav-logo-text strong {
+  color: var(--color-dusk);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
 nav a:hover,
 .back-link:hover,
 .product-details-button:hover,
@@ -1120,5 +1162,177 @@ main > p {
 }
 
 .nav-auth-button:hover {
+  opacity: 0.85;
+}
+
+/* PROFILE */
+
+.profile-page {
+  max-width: 1000px;
+  padding-top: 4.8rem;
+  padding-bottom: 7.2rem;
+}
+
+.profile-card,
+.orders-section {
+  border: 1px solid rgba(61, 43, 43, 0.1);
+  border-radius: 2.4rem;
+  background-color: white;
+  padding: 3.2rem;
+}
+
+.profile-card {
+  margin-bottom: 3.2rem;
+}
+
+.profile-card h1 {
+  margin-bottom: 1.2rem;
+}
+
+.profile-text {
+  color: rgba(61, 43, 43, 0.7);
+  font-size: 1.6rem;
+  line-height: 1.7;
+}
+
+.orders-heading {
+  margin-bottom: 2.4rem;
+}
+
+.orders-heading h2 {
+  margin-bottom: 0.8rem;
+  font-size: 2.6rem;
+}
+
+.orders-heading p,
+.orders-empty p {
+  color: rgba(61, 43, 43, 0.68);
+  font-size: 1.5rem;
+}
+
+.orders-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  align-items: flex-start;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.order-card {
+  border: 1px solid rgba(61, 43, 43, 0.1);
+  border-radius: 1.8rem;
+  padding: 2rem;
+  background-color: var(--color-creme);
+}
+
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 1.6rem;
+}
+
+.order-card-header h3 {
+  margin-bottom: 0.4rem;
+  font-size: 1.8rem;
+}
+
+.order-card-header p {
+  color: rgba(61, 43, 43, 0.65);
+  font-size: 1.3rem;
+}
+
+.order-card-header strong {
+  font-size: 1.8rem;
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-item {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.order-item img {
+  width: 56px;
+  height: 56px;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.order-item h4 {
+  margin-bottom: 0.4rem;
+  font-size: 1.5rem;
+}
+
+.order-item p {
+  color: rgba(61, 43, 43, 0.65);
+  font-size: 1.3rem;
+}
+
+/* NAV PROFILE */
+
+.nav-profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nav-profile-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* PROFILE ORDER TOTAL */
+
+.order-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.order-total span {
+  color: rgba(61, 43, 43, 0.65);
+  font-size: 1.3rem;
+}
+
+.order-total strong {
+  font-size: 1.8rem;
+}
+
+/* THANK YOU ACTIONS */
+
+.thank-you-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.thank-you-secondary-button {
+  display: inline-block;
+  padding: 1.2rem 2.4rem;
+  border: 1px solid rgba(61, 43, 43, 0.18);
+  border-radius: 999px;
+  background-color: white;
+  color: var(--color-dusk);
+  text-decoration: none;
+  font-size: 1.4rem;
+  transition: opacity 0.2s ease;
+}
+
+.thank-you-secondary-button:hover {
   opacity: 0.85;
 }

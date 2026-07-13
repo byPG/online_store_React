@@ -7,9 +7,15 @@ function ThankYouPage() {
         <h1>Thank you for your order!</h1>
         <p>Your order has been placed successfully.</p>
 
-        <Link to="/products" className="cart-empty-button">
-          Continue shopping
-        </Link>
+        <div className="thank-you-actions">
+          <Link to="/products" className="cart-empty-button">
+            Continue shopping
+          </Link>
+
+          <Link to="/profile" className="thank-you-secondary-button">
+            View order history
+          </Link>
+        </div>
       </section>
     </main>
   );

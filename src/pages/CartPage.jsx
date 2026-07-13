@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { createOrder } from "../services/ordersService";
+import { AuthContext } from "../context/AuthContext";
 
 function CartPage() {
   const navigate = useNavigate();
@@ -26,6 +27,8 @@ function CartPage() {
     totalPrice,
     clearCart,
   } = useContext(CartContext);
+
+  const { currentUser } = useContext(AuthContext);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -74,12 +77,19 @@ function CartPage() {
       return;
     }
 
+    if (!currentUser) {
+      setSubmitError("Please log in to place your order.");
+      return;
+    }
+
     setFormErrors({});
     setSubmitError("");
     setIsSubmitting(true);
 
     try {
       const orderData = {
+        userId: currentUser.uid,
+        userEmail: currentUser.email,
         customer: {
           name: formData.name,
           email: formData.email,

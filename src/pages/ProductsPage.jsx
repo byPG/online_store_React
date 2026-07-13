@@ -82,6 +82,27 @@ function ProductsPage() {
         >
           Body Care
         </button>
+        <button
+          type="button"
+          className={`filter-button ${selectedCategory === "Soap" ? "filter-button-active" : ""}`}
+          onClick={() => setSelectedCategory("Soap")}
+        >
+          Soap
+        </button>
+        <button
+          type="button"
+          className={`filter-button ${selectedCategory === "Perfume" ? "filter-button-active" : ""}`}
+          onClick={() => setSelectedCategory("Perfume")}
+        >
+          Perfume
+        </button>
+        <button
+          type="button"
+          className={`filter-button ${selectedCategory === "Accessories" ? "filter-button-active" : ""}`}
+          onClick={() => setSelectedCategory("Accessories")}
+        >
+          Accessories
+        </button>
       </div>
 
       <section className="products-list">

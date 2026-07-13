@@ -8,6 +8,7 @@ import NotFoundPage from "../pages/NotFoundPage";
 import ThankYouPage from "../pages/ThankYouPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import ProfilePage from "../pages/ProfilePage";
 
 function AppRouter() {
   return (
@@ -18,6 +19,7 @@ function AppRouter() {
       {/* dynamic route for product details using :productId as a parameter */}
       <Route path="/favourites" element={<FavouritesPage />} />
       <Route path="/cart" element={<CartPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
       <Route path="/thank-you" element={<ThankYouPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />

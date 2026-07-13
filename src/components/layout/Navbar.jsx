@@ -12,7 +12,14 @@ export default function Navbar() {
   return (
     <header>
       <nav>
-        <Link to="/">Beauty Shop</Link>
+        <Link to="/" className="nav-logo" aria-label="Beauty Shop home">
+          <span className="nav-logo-mark">B</span>
+
+          <span className="nav-logo-text">
+            <span>Beauty</span>
+            <strong>Shop</strong>
+          </span>
+        </Link>
 
         <div>
           <Link to="/">Home</Link>
@@ -29,10 +36,13 @@ export default function Navbar() {
             <span>Cart</span>
             {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
           </Link>
-
           {currentUser ? (
             <>
-              <span className="nav-user">{currentUser.email}</span>
+              <Link to="/profile" className="nav-profile-link">
+                <span className="nav-profile-icon">👤</span>
+                <span>Your Profile</span>
+              </Link>
+
               <button
                 className="nav-auth-button"
                 type="button"
