@@ -70,7 +70,7 @@ function HomePage() {
             <div>
               <span>Skincare</span>
               <h3>Hydrate, brighten and care for your skin.</h3>
-              <Link to="/products">Browse skincare</Link>
+              <Link to="/products?category=Skincare">Browse skincare</Link>
             </div>
           </article>
 
@@ -79,7 +79,7 @@ function HomePage() {
             <div>
               <span>Makeup</span>
               <h3>Add colour, definition and confidence.</h3>
-              <Link to="/products">Browse makeup</Link>
+              <Link to="/products?category=Makeup">Browse makeup</Link>
             </div>
           </article>
 
@@ -88,7 +88,7 @@ function HomePage() {
             <div>
               <span>Body care</span>
               <h3>Soft textures for your daily body ritual.</h3>
-              <Link to="/products">Browse body care</Link>
+              <Link to="/products?category=Body Care">Browse body care</Link>
             </div>
           </article>
         </div>

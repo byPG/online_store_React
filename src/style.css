@@ -1336,3 +1336,23 @@ main > p {
 .thank-you-secondary-button:hover {
   opacity: 0.85;
 }
+
+/* PASSWORD REQUIREMENTS */
+
+.password-requirements {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: -0.2rem 0 0.4rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.password-requirements li {
+  color: rgba(61, 43, 43, 0.58);
+  font-size: 1.2rem;
+}
+
+.password-requirements .password-rule-valid {
+  color: var(--color-sage);
+}

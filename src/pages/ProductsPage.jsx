@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { getProducts } from "../services/productsService";
 import SingularProductCard from "../components/products/SingularProductCard";
 
@@ -7,6 +8,27 @@ function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const categories = [
+    "All",
+    "Skincare",
+    "Makeup",
+    "Body Care",
+    "Soap",
+    "Perfume",
+    "Accessories",
+  ];
+
+  useEffect(() => {
+    const categoryFromUrl = searchParams.get("category");
+
+    if (categoryFromUrl && categories.includes(categoryFromUrl)) {
+      setSelectedCategory(categoryFromUrl);
+    } else {
+      setSelectedCategory("All");
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     async function loadProducts() {
@@ -24,6 +46,16 @@ function ProductsPage() {
 
     loadProducts();
   }, []);
+
+  function handleCategoryChange(category) {
+    setSelectedCategory(category);
+
+    if (category === "All") {
+      setSearchParams({});
+    } else {
+      setSearchParams({ category });
+    }
+  }
 
   const filteredProducts =
     selectedCategory === "All"
@@ -57,49 +89,49 @@ function ProductsPage() {
         <button
           type="button"
           className={`filter-button ${selectedCategory === "All" ? "filter-button-active" : ""}`}
-          onClick={() => setSelectedCategory("All")}
+          onClick={() => handleCategoryChange("All")}
         >
           All
         </button>
         <button
           type="button"
           className={`filter-button ${selectedCategory === "Skincare" ? "filter-button-active" : ""}`}
-          onClick={() => setSelectedCategory("Skincare")}
+          onClick={() => handleCategoryChange("Skincare")}
         >
           Skincare
         </button>
         <button
           type="button"
           className={`filter-button ${selectedCategory === "Makeup" ? "filter-button-active" : ""}`}
-          onClick={() => setSelectedCategory("Makeup")}
+          onClick={() => handleCategoryChange("Makeup")}
         >
           Makeup
         </button>
         <button
           type="button"
           className={`filter-button ${selectedCategory === "Body Care" ? "filter-button-active" : ""}`}
-          onClick={() => setSelectedCategory("Body Care")}
+          onClick={() => handleCategoryChange("Body Care")}
         >
           Body Care
         </button>
         <button
           type="button"
           className={`filter-button ${selectedCategory === "Soap" ? "filter-button-active" : ""}`}
-          onClick={() => setSelectedCategory("Soap")}
+          onClick={() => handleCategoryChange("Soap")}
         >
           Soap
         </button>
         <button
           type="button"
           className={`filter-button ${selectedCategory === "Perfume" ? "filter-button-active" : ""}`}
-          onClick={() => setSelectedCategory("Perfume")}
+          onClick={() => handleCategoryChange("Perfume")}
         >
           Perfume
         </button>
         <button
           type="button"
           className={`filter-button ${selectedCategory === "Accessories" ? "filter-button-active" : ""}`}
-          onClick={() => setSelectedCategory("Accessories")}
+          onClick={() => handleCategoryChange("Accessories")}
         >
           Accessories
         </button>
