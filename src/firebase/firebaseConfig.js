@@ -4,12 +4,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCFg5iSQLwxZJnnispb7yGFhvsDJeMEqmU",
-  authDomain: "beauty-shop-react.firebaseapp.com",
-  projectId: "beauty-shop-react",
-  storageBucket: "beauty-shop-react.firebasestorage.app",
-  messagingSenderId: "950059981991",
-  appId: "1:950059981991:web:125fee52e55831c6c38f82"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
