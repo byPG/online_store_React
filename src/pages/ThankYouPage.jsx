@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function ThankYouPage() {
+  const location = useLocation();
+  const checkoutType = location.state?.checkoutType;
+  const isGuestOrder = checkoutType === "guest";
+
   return (
     <main>
       <section className="thank-you-page">
@@ -12,9 +16,15 @@ function ThankYouPage() {
             Continue shopping
           </Link>
 
-          <Link to="/profile" className="thank-you-secondary-button">
-            View order history
-          </Link>
+          {isGuestOrder ? (
+            <Link to="/register" className="thank-you-secondary-button">
+              Create account
+            </Link>
+          ) : (
+            <Link to="/profile" className="thank-you-secondary-button">
+              View order history
+            </Link>
+          )}
         </div>
       </section>
     </main>

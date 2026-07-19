@@ -1402,3 +1402,57 @@ main > p {
 .scroll-icon-up {
   transform: rotate(180deg);
 }
+
+/* CHECKOUT OPTIONS */
+
+.checkout-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 2.4rem;
+  padding-top: 2.4rem;
+  border-top: 1px solid rgba(61, 43, 43, 0.1);
+}
+
+.checkout-options h2 {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.checkout-options p,
+.checkout-helper {
+  color: rgba(61, 43, 43, 0.68);
+  font-size: 1.4rem;
+  line-height: 1.6;
+}
+
+.checkout-secondary-link {
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid rgba(61, 43, 43, 0.18);
+  border-radius: 999px;
+  padding: 1.2rem 2.4rem;
+  background-color: white;
+  color: var(--color-dusk);
+  font-size: 1.4rem;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.checkout-secondary-link:hover {
+  opacity: 0.85;
+}
+
+.checkout-text-button {
+  border: none;
+  background: none;
+  color: var(--color-terra);
+  font-size: 1.4rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.checkout-text-button:hover {
+  opacity: 0.85;
+}

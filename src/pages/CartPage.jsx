@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import { createOrder } from "../services/ordersService";
 import { AuthContext } from "../context/AuthContext";
@@ -17,6 +17,7 @@ function CartPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [formErrors, setFormErrors] = useState({});
+  const [checkoutMode, setCheckoutMode] = useState(null);
 
   const {
     cartItems,
@@ -29,6 +30,19 @@ function CartPage() {
   } = useContext(CartContext);
 
   const { currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (currentUser) {
+      setCheckoutMode("user");
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        email: currentUser.email || prevFormData.email,
+      }));
+    } else {
+      setCheckoutMode(null);
+    }
+  }, [currentUser]);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -77,8 +91,8 @@ function CartPage() {
       return;
     }
 
-    if (!currentUser) {
-      setSubmitError("Please log in to place your order.");
+    if (!checkoutMode) {
+      setSubmitError("Please choose a checkout option.");
       return;
     }
 
@@ -87,9 +101,12 @@ function CartPage() {
     setIsSubmitting(true);
 
     try {
+      const isUserCheckout = checkoutMode === "user" && currentUser;
+
       const orderData = {
-        userId: currentUser.uid,
-        userEmail: currentUser.email,
+        checkoutType: isUserCheckout ? "user" : "guest",
+        userId: isUserCheckout ? currentUser.uid : null,
+        userEmail: isUserCheckout ? currentUser.email : formData.email,
         customer: {
           name: formData.name,
           email: formData.email,
@@ -123,7 +140,11 @@ function CartPage() {
       });
 
       clearCart();
-      navigate("/thank-you");
+      navigate("/thank-you", {
+        state: {
+          checkoutType: orderData.checkoutType,
+        },
+      });
     } catch (firebaseError) {
       console.error("Order submit error:", firebaseError);
       setSubmitError("Could not place your order. Please try again.");
@@ -206,77 +227,129 @@ function CartPage() {
             <strong>{totalPrice.toFixed(2)} zł</strong>
           </div>
 
-          <form className="checkout-form" onSubmit={handleSubmit}>
-            <h2>Checkout</h2>
+          {!checkoutMode && !currentUser && (
+            <div className="checkout-options">
+              <h2>How would you like to checkout?</h2>
 
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={formData.name}
-              onChange={handleChange}
-            />
+              <p>
+                Continue as a guest or log in to save this order in your profile
+                history.
+              </p>
 
-            {formErrors.name && (
-              <p className="form-field-error">{formErrors.name}</p>
-            )}
+              <button
+                className="checkout-button"
+                type="button"
+                onClick={() => setCheckoutMode("guest")}
+              >
+                Checkout as guest
+              </button>
 
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-            />
+              <Link to="/login" className="checkout-secondary-link">
+                Log in and continue
+              </Link>
 
-            {formErrors.email && (
-              <p className="form-field-error">{formErrors.email}</p>
-            )}
+              <Link to="/register" className="checkout-secondary-link">
+                Create account
+              </Link>
 
-            <input
-              type="text"
-              name="address"
-              placeholder="Address"
-              value={formData.address}
-              onChange={handleChange}
-            />
-            {formErrors.address && (
-              <p className="form-field-error">{formErrors.address}</p>
-            )}
+              {submitError && <p className="form-field-error">{submitError}</p>}
+            </div>
+          )}
 
-            <input
-              type="text"
-              name="city"
-              placeholder="City"
-              value={formData.city}
-              onChange={handleChange}
-            />
+          {checkoutMode && (
+            <form className="checkout-form" onSubmit={handleSubmit}>
+              <h2>
+                {checkoutMode === "guest" ? "Guest checkout" : "Checkout"}
+              </h2>
 
-            {formErrors.city && (
-              <p className="form-field-error">{formErrors.city}</p>
-            )}
+              {checkoutMode === "guest" && (
+                <p className="checkout-helper">
+                  Your order will be placed without an account and will not
+                  appear in profile order history.
+                </p>
+              )}
 
-            <input
-              type="text"
-              name="postalCode"
-              placeholder="Postal Code"
-              value={formData.postalCode}
-              onChange={handleChange}
-            />
-            {formErrors.postalCode && (
-              <p className="form-field-error">{formErrors.postalCode}</p>
-            )}
+              <input
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                value={formData.name}
+                onChange={handleChange}
+              />
 
-            {submitError && <p className="form-field-error">{submitError}</p>}
+              {formErrors.name && (
+                <p className="form-field-error">{formErrors.name}</p>
+              )}
 
-            <button
-              className="checkout-button"
-              type="submit"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Placing order..." : "Place Order"}
-            </button>
-          </form>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+
+              {formErrors.email && (
+                <p className="form-field-error">{formErrors.email}</p>
+              )}
+
+              <input
+                type="text"
+                name="address"
+                placeholder="Address"
+                value={formData.address}
+                onChange={handleChange}
+              />
+
+              {formErrors.address && (
+                <p className="form-field-error">{formErrors.address}</p>
+              )}
+
+              <input
+                type="text"
+                name="city"
+                placeholder="City"
+                value={formData.city}
+                onChange={handleChange}
+              />
+
+              {formErrors.city && (
+                <p className="form-field-error">{formErrors.city}</p>
+              )}
+
+              <input
+                type="text"
+                name="postalCode"
+                placeholder="Postal Code"
+                value={formData.postalCode}
+                onChange={handleChange}
+              />
+
+              {formErrors.postalCode && (
+                <p className="form-field-error">{formErrors.postalCode}</p>
+              )}
+
+              {submitError && <p className="form-field-error">{submitError}</p>}
+
+              <button
+                className="checkout-button"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Placing order..." : "Place Order"}
+              </button>
+
+              {checkoutMode === "guest" && (
+                <button
+                  className="checkout-text-button"
+                  type="button"
+                  onClick={() => setCheckoutMode(null)}
+                >
+                  Back to checkout options
+                </button>
+              )}
+            </form>
+          )}
         </aside>
       </section>
     </main>
