@@ -134,7 +134,8 @@ function ProductDetailsPage() {
               <img
                 key={index}
                 src={img}
-                alt={`${selectedProduct.name} ${index}`}
+                alt={`${selectedProduct.name} ${index + 1}`}
+                loading="lazy"
                 className={`product-thumbnail ${
                   displayedImage === img ? "product-thumbnail-active" : ""
                 }`}

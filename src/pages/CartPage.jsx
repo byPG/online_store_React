@@ -180,7 +180,7 @@ function CartPage() {
         <div className="cart-items">
           {cartItems.map((item) => (
             <article className="cart-item" key={item.id}>
-              <img src={item.image} alt={item.name} />
+              <img src={item.image} alt={item.name} loading="lazy" />
 
               <div className="cart-item-info">
                 <h2>{item.name}</h2>

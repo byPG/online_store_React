@@ -115,7 +115,7 @@ function ProfilePage() {
                 <div className="order-items">
                   {order.items.map((item) => (
                     <div className="order-item" key={`${order.id}-${item.id}`}>
-                      <img src={item.image} alt={item.name} />
+                      <img src={item.image} alt={item.name} loading="lazy" />
 
                       <div>
                         <h4>{item.name}</h4>

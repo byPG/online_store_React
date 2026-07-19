@@ -66,7 +66,11 @@ function HomePage() {
 
         <div className="home-categories">
           <article className="home-category-card">
-            <img src="/images/serum.jpg" alt="Skincare products" />
+            <img
+              src="/images/serum.jpg"
+              alt="Skincare products"
+              loading="lazy"
+            />
             <div>
               <span>Skincare</span>
               <h3>Hydrate, brighten and care for your skin.</h3>
@@ -75,7 +79,11 @@ function HomePage() {
           </article>
 
           <article className="home-category-card">
-            <img src="/images/lipstick.jpg" alt="Makeup products" />
+            <img
+              src="/images/lipstick.jpg"
+              alt="Makeup products"
+              loading="lazy"
+            />
             <div>
               <span>Makeup</span>
               <h3>Add colour, definition and confidence.</h3>
@@ -84,7 +92,11 @@ function HomePage() {
           </article>
 
           <article className="home-category-card">
-            <img src="/images/balsam.jpg" alt="Body care products" />
+            <img
+              src="/images/balsam.jpg"
+              alt="Body care products"
+              loading="lazy"
+            />
             <div>
               <span>Body care</span>
               <h3>Soft textures for your daily body ritual.</h3>
