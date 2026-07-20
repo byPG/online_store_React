@@ -38,7 +38,7 @@ body {
 }
 
 #root {
-  flex: 1; // flex grow to fill the remaining space, flex shrink to shrink if needed, and flex-basis for initial size (width or height) of the element. Here, 0 means the element will not have any initial size and will only grow or shrink based on the available space.
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -155,7 +155,7 @@ nav a:hover,
 
 main {
   flex-grow: 1;
-  flex-shrink: 1;
+  flex-shrink: 0;
   flex-basis: auto;
 }
 
