@@ -225,10 +225,6 @@ main > p {
   margin: 0 auto;
   padding: 20px 24px;
   text-align: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background-color: white;
 }
 
