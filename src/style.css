@@ -38,7 +38,7 @@ body {
 }
 
 #root {
-  flex: 1;
+  flex: 1; // flex grow to fill the remaining space, flex shrink to shrink if needed, and flex-basis for initial size (width or height) of the element. Here, 0 means the element will not have any initial size and will only grow or shrink based on the available space.
   display: flex;
   flex-direction: column;
 }
@@ -158,7 +158,9 @@ nav a:hover,
 }
 
 main {
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
 }
 
 main h1 {
@@ -239,7 +241,9 @@ main > p {
 
 .product-card-main-link {
   display: block;
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
 }
 
 .back-link {
@@ -344,7 +348,9 @@ main > p {
 }
 
 .product-details-button {
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
   width: auto;
   height: 4.6rem;
   border: none;
@@ -661,7 +667,9 @@ main > p {
 }
 
 .product-card-cart-button {
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
   border: none;
   border-radius: 999px;
   padding: 1.2rem 1.6rem;
@@ -1585,7 +1593,9 @@ main > p {
   .home-primary-button,
   .home-secondary-button {
     width: auto;
-    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
     min-height: 4.2rem;
     padding: 0 1.2rem;
     font-size: 1.2rem;
@@ -1631,7 +1641,9 @@ main > p {
   }
 
   .product-cards-favourites > div {
-    flex: 0 1 calc(50% - 0.6rem);
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: calc(50% - 0.6rem);
     min-width: 0;
   }
 
@@ -1697,11 +1709,15 @@ main > p {
   }
 
   .products-list .product-card-cart-button {
-    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
   }
 
   .products-list .product-card-favourite-button {
-    flex: 0 0 4rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 4rem;
     width: 4rem;
     height: 4rem;
   }
@@ -1735,11 +1751,14 @@ main > p {
   }
 
   .product-cards-favourites .product-card-cart-button {
-    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
   }
 
   .product-cards-favourites .product-card-favourite-button {
-    flex: 0 0 4rem;
+    flex-grow: 0;
+    flex-shrink: 0;
     width: 4rem;
     height: 4rem;
   }
