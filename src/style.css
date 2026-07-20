@@ -1426,7 +1426,7 @@ main > p {
 }
 
 /*RESPONSIVENESS*/
-/* Responsivness for 2560*/
+/* Responsiveness for 2560*/
 @media (min-width: 2560px) {
   /*Main Site*/
   nav,
@@ -1449,14 +1449,14 @@ main > p {
   }
 }
 
-/* Responsivness for 1024*/
+/* Responsiveness for 1024*/
 /*Main Site*/
 @media (max-width: 1024px) {
   .home-hero-card {
     right: -1.2rem;
   }
 }
-/* Responsivness for 900*/
+/* Responsiveness for 900*/
 @media (max-width: 900px) {
   /*Main Site*/
   .home-hero {
@@ -1495,7 +1495,7 @@ main > p {
   }
 }
 
-/* Responsivness for 768*/
+/* Responsiveness for 768*/
 /*Products site*/
 @media (max-width: 768px) {
   /*Header / Navigation*/
@@ -1560,7 +1560,7 @@ main > p {
   }
 }
 
-/* Responsivness for 560*/
+/* Responsiveness for 560*/
 /*Main Site*/
 @media (max-width: 560px) {
   .home-hero {
@@ -1671,7 +1671,7 @@ main > p {
   }
 }
 
-/*Responsivness for 425*/
+/*Responsiveness for 425*/
 @media (max-width: 425px) {
   /*Products site*/
   .products-list {
@@ -1755,7 +1755,7 @@ main > p {
   }
 }
 
-/*Responsivness for 375*/
+/*Responsiveness for 375*/
 @media (max-width: 375px) {
   /*Products site*/
   .cart-item {
