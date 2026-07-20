@@ -375,7 +375,6 @@ Current final stage:
 - final testing,
 - screenshots for portfolio.
 
-## Future improvements
 
 ## Future improvements
 
@@ -388,6 +387,7 @@ Possible future improvements:
 - sorting products by price,
 - improved image hosting,
 - more advanced form validation,
+- product carousel on the product details page with recommended or related products,
 - order status management.
 
 ## Author
