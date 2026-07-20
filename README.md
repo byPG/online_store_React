@@ -377,8 +377,11 @@ Current final stage:
 
 ## Future improvements
 
+## Future improvements
+
 Possible future improvements:
 
+- Google sign-in,
 - saved delivery details in user profile,
 - admin panel for managing products and orders,
 - product search,
