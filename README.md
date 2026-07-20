@@ -5,6 +5,11 @@ The application allows users to browse products, add them to favourites, manage 
 
 The project was created to practise React fundamentals, routing, shared state management, form handling, Firebase Authentication and Firestore database operations.
 
+## Live demo
+
+The application is available here:
+https://online-store-react-rho.vercel.app/
+
 ## Project overview
 
 Beauty Shop simulates a small online store with a complete basic shopping flow:
