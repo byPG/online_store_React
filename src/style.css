@@ -537,6 +537,32 @@ main > p {
   opacity: 0.85;
 }
 
+.favourites-empty {
+  margin-top: 6rem;
+  text-align: center;
+}
+
+.favourites-empty p {
+  margin-bottom: 2.4rem;
+  color: rgba(61, 43, 43, 0.68);
+  font-size: 1.6rem;
+}
+
+.favourites-empty-button {
+  display: inline-block;
+  padding: 1.2rem 2.4rem;
+  border-radius: 999px;
+  background-color: var(--color-terra);
+  color: white;
+  font-size: 1.4rem;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.favourites-empty-button:hover {
+  opacity: 0.85;
+}
+
 .cart-link {
   position: relative;
   display: inline-flex;

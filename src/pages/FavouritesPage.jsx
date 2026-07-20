@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { FavouritesContext } from "../context/FavouritesContext";
 import SingularProductCard from "../components/products/SingularProductCard";
@@ -7,28 +8,31 @@ function FavouritesPage() {
 
   return (
     <main>
-      <h1>Favourites Page</h1>
-      <p>Your favourite products will be displayed here.</p>
-      {favouriteItems.length === 0 && <p>You have no favourite products.</p>}
+      <h1>Favourite Products</h1>
 
-      <section className="product-cards-favourites">
-        {favouriteItems.length > 0 && (
-          <>
-            {favouriteItems.map((product) => (
-              <div key={product.id}>
-                <SingularProductCard
-                  className="product-card"
-                  id={product.id}
-                  name={product.name}
-                  category={product.category}
-                  price={product.price}
-                  image={product.image}
-                />
-              </div>
-            ))}
-          </>
-        )}
-      </section>
+      {favouriteItems.length === 0 ? (
+        <div className="favourites-empty">
+          <p>You have no favourite products yet.</p>
+          <Link to="/products" className="favourites-empty-button">
+            Browse products
+          </Link>
+        </div>
+      ) : (
+        <section className="product-cards-favourites">
+          {favouriteItems.map((product) => (
+            <div key={product.id}>
+              <SingularProductCard
+                id={product.id}
+                name={product.name}
+                category={product.category}
+                price={product.price}
+                image={product.image}
+                className="product-card"
+              />
+            </div>
+          ))}
+        </section>
+      )}
     </main>
   );
 }
